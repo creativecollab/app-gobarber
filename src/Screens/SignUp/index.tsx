@@ -21,6 +21,8 @@ import Button from '../../Components/Button';
 
 import GetValidateError from '../../Utils/GetValidateError';
 
+import Api from '../../Services/Api';
+
 import brand from '../../assets/logo.png';
 import {
   Container,
@@ -58,15 +60,11 @@ const SingUp: React.FC = () => {
         abortEarly: false,
       });
 
-      // await Api.post('/users', data);
+      await Api.post('/users', data);
 
-      // addToast({
-      //   type: 'success',
-      //   title: 'Cadastrado',
-      //   description: 'Usuario registrado com Sucesso',
-      // });
+      Alert.alert('Cadastro feito com Sucesso', 'Você já pode se logar no app');
 
-      // history.push('/');
+      navigation.navigate('SignIn');
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         const errors = GetValidateError(error);
